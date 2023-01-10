@@ -1,0 +1,5 @@
+- sudo service postgresql start (서버? 시작)
+- sudo -u postgres psql (psql 터미널 시작)
+- create database [mydb]; (데이터베이스 만들기 세미콜론 필수!!)
+- alter user [postgres(사용자)] with password '[password]';
+- \c [mydb] - 데이터베이스에 접속
