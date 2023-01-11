@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node server.mjs",
+    "dev": "nodemon --exec babel-node server",
     "migrate": "npx prisma migrate dev",
     "studio": "npx prisma studio"
   },
@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/sinsunran/instaclone-backend#readme",
   "dependencies": {
-    "@apollo/server": "^4.3.0",
     "@graphql-tools/load-files": "^6.6.1",
     "@graphql-tools/merge": "^8.3.14",
     "@graphql-tools/schema": "^9.0.12",
     "@prisma/client": "^4.8.1",
+    "apollo-server": "^3.11.1",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "nodemon": "^2.0.20"
