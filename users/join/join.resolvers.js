@@ -1,9 +1,9 @@
-import client from "../client.js";
+import client from "../../client";
 import bcrypt from "bcrypt";
 
 export default {
   Mutation: {
-    createAccount: async (
+    join: async (
       _,
       { username, email, name, location, avatarURL, gihubUsername, password }
     ) => {
@@ -12,17 +12,21 @@ export default {
           where: { OR: [{ username }, { email }, { gihubUsername }] },
         });
         if (existUser) {
-          throw new Error("$error");
+          return {
+            ok: false,
+            error:
+              "there is user already has samw username/email/githubUsername",
+          };
         }
-        const hashedPassword = await bcrypt(password, 5);
+        const hashedPassword = await bcrypt.hash(password, 5);
         const user = await client.user.create({
           data: {
             username,
             email,
             name,
-            location,
-            avatarURL,
-            githubUsername,
+            ...(location && { location }),
+            ...(avatarURL && { avatarURL }),
+            ...(gihubUsername && { gihubUsername }),
             password: hashedPassword,
           },
         });
